@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+	Solicitud de recibo de consignación
+{% endblock %}
+
+{% block content %}
+
+<div class="row content-header">
+	<div class="container">
+      <div  id="contenedor" class="col s12 m6 l12">
+        <div id="car" class="card">
+			
+
+			{% if info_enviado %}
+				
+				<p><h4 id="cn">Su petición será respondida en un lapso de 24 horas hábiles</h4></p>
+			{% else %}
+				<p><h5 id="cn">Ingrese los siguientes datos para solicitar el servicio que requiere: </h5></p>
+				<div class="divider"></div><br>
+				<form action="." method = "POST" enctype = "multipart/form-data">
+					{% csrf_token %}
+					{{ form.as_p }}
+					<center><button type="submit" class="btn btn-sm btn-curious-blue-variant-1">Enviar</button></center>
+					
+				</form>
+			{% endif %}
+			<br>
+		</div>
+	</div>
+</div>
+</div>
+
+
+
+{% endblock %}
