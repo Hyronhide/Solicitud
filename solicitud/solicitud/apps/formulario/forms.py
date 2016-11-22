@@ -22,5 +22,5 @@ class solicitud_form(forms.ModelForm):
 	class Meta:
 		model = Solicitud
 		fields = '__all__'
-		exclude = ['status','codigo']
+		exclude = ['status_admin','status_user','codigo']
 			

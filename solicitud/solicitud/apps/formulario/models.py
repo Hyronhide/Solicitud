@@ -19,7 +19,8 @@ class Solicitud (models.Model):
 	correo 			= models.EmailField(max_length = 50)
 	telefono 		= models.CharField(max_length = 11)
 	tipo_servicio 	= models.CharField(max_length = 100, choices=TIPO_SERVICIO)
-	status 			= models.BooleanField(default = False)
+	status_admin 	= models.BooleanField(default = False)
+	status_user 	= models.BooleanField(default = False)
 	codigo 			= models.CharField(max_length = 100, default=True)
 	
 

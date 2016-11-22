@@ -65,7 +65,7 @@ def Solicitud_View (request):
 			
 			form = formulario.save(commit=False)
 			form.codigo=str(codigo_parsear)
-			form.status = True
+			#form.status = True
 			form.save()
 
 			if tipo_servicio == 'Duplicado_Carnet':
@@ -102,6 +102,14 @@ def Solicitud_View (request):
 			msg2.attach_alternative(html_content_user,'text/html')
 			msg2.send()
 			msg.send()
+			form_status= formulario.save(commit=False)
+			if msg.send():
+				form_status.status_admin=True
+			if msg2.send():
+				form_status.status_user=True
+
+			form_status.save()
+
 			'''Fin del bloque'''
 	else:
 		formulario = solicitud_form()		
