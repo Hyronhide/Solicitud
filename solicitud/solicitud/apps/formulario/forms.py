@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 from django import forms
-#from .models import *
+from .models import *
 
 TIPO_SERVICIO=(
 		('Duplicado_Carnet','Duplicado de carnet: valor $5.000'),
@@ -10,7 +10,7 @@ TIPO_SERVICIO=(
 		('Contenidos_Programaticos','Contenidos programáticos: valor $4.100'),
 	)
 
-class solicitud_form(forms.Form):
+class solicitud_form(forms.ModelForm):
 
 	nombres = forms.CharField(label='Nombres completos',max_length = 50,widget = forms.TextInput())
 	apellidos = forms.CharField(label='Apellidos completos',max_length = 50,widget = forms.TextInput())
@@ -18,4 +18,9 @@ class solicitud_form(forms.Form):
 	correo 	= forms.EmailField(label='Correo',max_length = 50,widget = forms.TextInput())
 	telefono = forms.CharField(label='Teléfono',max_length = 11,widget = forms.TextInput())
 	tipo_servicio = forms.CharField(label='Tipo de Servicio',max_length = 100,widget=forms.Select(choices=TIPO_SERVICIO))
-	
+
+	class Meta:
+		model = Solicitud
+		fields = '__all__'
+		exclude = ['status','codigo']
+			
