@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.mail import EmailMultiAlternatives
 from django.contrib import messages
-from .models import *
+#from .models import *
 from .forms import *
 
 
@@ -56,7 +56,7 @@ def Solicitud_View (request):
 
 			'''Bloque configuracion de envio por GMAIL'''
 			to_admin = 'lgonzalez21@misena.edu.co'
-			#o_admin = 'drmosquera90@misena.edu.co'
+			#to_admin = 'drmosquera90@misena.edu.co'
 			to_user = correo
 			html_content_admin = "<p><b>Solicitud de servicio: </b>%s</p><br> <b>Nombres</b>: %s <br><br> <b>Apellidos</b>: %s  <br><br> <b>Correo:</b> %s  <br><br> <b>Cedula:</b> %s  <br><br> <b>Telefono:</b> %s "%(servicio,nombres,apellidos,correo,cedula,telefono)
 			html_content_user = "<p><b>Solicitud de servicio: </b>%s</p><br> -Debe imprimir únicamente copia de banco.<br>-Debe hacer consignación en Bancolombia, no corresponsales bancarios.<br>-Una vez consigne o cancele su recibo debe hacerlos llegar a las oficinas de coordinación académica según su solicitud ,en este caso:  %s.<br>-La consignación debe hacerse el mismo día que se genera el recibo.<br>-Debe imprimir el recibo en impresora laser.<br>"%(servicio,servicio_usuario)
