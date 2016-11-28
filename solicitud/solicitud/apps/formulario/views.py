@@ -15,6 +15,8 @@ from datetime import datetime
 def Solicitud_View (request):
 	###### Informacion del formualario #########
 	info_enviado = False 
+	info_enviado_admin = False
+	info_enviado_user = False
 	correo = ""
 	nombres  = ""
 	apellidos = ""
@@ -24,7 +26,7 @@ def Solicitud_View (request):
 	servicio = " "
 	servicio_usuario = ""
 	
-	####### VARIABLES CODIGO ################
+	####### VARIABLES CODIGO DE SOLICITUD################
 	cod = Solicitud.objects.count()
 	cod= cod+1
 	x = str(cod)
@@ -61,7 +63,7 @@ def Solicitud_View (request):
 				cadena_ceros=""
 			fecha = datetime.now()
 			codigo_parsear=('%s%s%s%s')%(fecha.year, fecha.month, cadena_ceros,cod)						
-			print(codigo_parsear)
+			#print(codigo_parsear)
 			
 			form = formulario.save(commit=False)
 			form.codigo=str(codigo_parsear)
@@ -70,48 +72,49 @@ def Solicitud_View (request):
 
 			if tipo_servicio == 'Duplicado_Carnet':
 				servicio = "Duplicado de carnet"
-				servicio_usuario = "Duplicado de carnet: valor $5.000, Entregar a Marta Lucia Muñoz"
+				servicio_usuario = "Duplicado de carnet: valor $5.000, entregar a Marta Lucia Muñoz"
 
 			if tipo_servicio == 'Duplicado_Constancias':
 				servicio = "Duplicado de constancias"
-				servicio_usuario = "Duplicado de constancias: valor $4.100, Entregar a Marta Lucia Muñoz"
+				servicio_usuario = "Duplicado de constancias: valor $4.100, entregar a Marta Lucia Muñoz"
 
 			if tipo_servicio == 'Duplicado_Actas':
 				servicio = "Duplicado de actas de grado" 
-				servicio_usuario = "Duplicado de actas de grado: valor $4.100, Entregar a Marta Lucia Muñoz"
+				servicio_usuario = "Duplicado de actas de grado: valor $4.100, entregar a Marta Lucia Muñoz"
 
 			if tipo_servicio == 'Duplicado_Certificados':
 				servicio = "Duplicado de certificados" 
-				servicio_usuario = "Duplicado de certificados: valor $4.100, Entregar a Libardo Arias"
+				servicio_usuario = "Duplicado de certificados: valor $4.100, entregar a Libardo Arias"
 
 			if tipo_servicio == 'Contenidos_Programaticos':
 				servicio = "Contenidos programaticos" 	
-				servicio_usuario = "Contenidos programaticos: valor $4.100, Entregar a Luz Marina Ríos"		 	 
+				servicio_usuario = "Contenidos programaticos: valor $4.100, entregar a Luz Marina Ríos"		 	 
 
 			'''Bloque configuracion de envio por GMAIL'''
 			#to_admin = 'lgonzalez21@misena.edu.co'
 			to_admin = 'drmosquera90@misena.edu.co'
 			to_user = correo
-			html_content_admin = "<p><b>Solicitud de servicio: </b>%s</p><br> <b>Nombres</b>: %s <br><br> <b>Apellidos</b>: %s  <br><br> <b>Correo:</b> %s  <br><br> <b>Cedula:</b> %s  <br><br> <b>Telefono:</b> %s "%(servicio,nombres,apellidos,correo,cedula,telefono)
-			html_content_user = "<p><b>Solicitud de servicio: </b>%s</p><br> -Debe imprimir únicamente copia de banco.<br>-Debe hacer consignación en Bancolombia, no corresponsales bancarios.<br>-Una vez consigne o cancele su recibo debe hacerlos llegar a las oficinas de coordinación académica según su solicitud ,en este caso:  %s.<br>-La consignación debe hacerse el mismo día que se genera el recibo.<br>-Debe imprimir el recibo en impresora laser.<br>"%(servicio,servicio_usuario)
+			html_content_admin = "<p><b>Solicitud de servicio: </b>%s</p> <p><b>Codigo de radicado:</b> %s</p> <br> <b>Nombres</b>: %s <br><br> <b>Apellidos</b>: %s  <br><br> <b>Correo:</b> %s  <br><br> <b>Cedula:</b> %s  <br><br> <b>Telefono:</b> %s "%(servicio,codigo_parsear,nombres,apellidos,correo,cedula,telefono)
+			html_content_user = "<p><b>Solicitud de servicio: </b>%s</p> <p><b>Codigo de radicado:</b> %s</p> <p><b>Apreciado usuario, su solicitud será respondida en un termino maximo de 24 horas, por favor tenga en cuenta siguientes instrucciones:</b></p> 1. Debe imprimir únicamente copia que hace referencia al banco, importante: DEBE IMPRIMIR EL RECIBO EN IMPRESORA LASER.<br>2. Debe hacer consignación en sucursales Bancolombia(no corresponsales bancarios).<br>3. Una vez consigne o cancele su recibo debe hacerlos llegar a las oficinas de coordinación académica según su solicitud ,en este caso:  %s.<br>4. La consignación debe hacerse el mismo día que se genera el recibo."%(servicio,codigo_parsear,servicio_usuario)
 
 			msg = EmailMultiAlternatives('Solicitud de recibo de consignacion', html_content_admin, 'from@gmail.com',[to_admin])
 			msg2 = EmailMultiAlternatives('Solicitud de recibo de consignacion (Recuerde esto al momento de obtener el recibo)', html_content_user, 'from@gmail.com',[to_user])
-			msg.attach_alternative(html_content_admin,'text/html')
-			
-			msg2.attach_alternative(html_content_user,'text/html')
-			msg2.send()
+			msg.attach_alternative(html_content_admin,'text/html')			
+			msg2.attach_alternative(html_content_user,'text/html')			
 			msg.send()
+			msg2.send()
 			form_status= formulario.save(commit=False)
-			if msg.send():
+			if msg.send:
 				form_status.status_admin=True
-			if msg2.send():
+				info_enviado_admin = True
+			if msg2.send:
 				form_status.status_user=True
+				info_enviado_user = True
 
 			form_status.save()
 
 			'''Fin del bloque'''
 	else:
 		formulario = solicitud_form()		
-	ctx = {'form':formulario, 'correo':correo, 'nombres':nombres, 'apellidos':apellidos, 'cedula':cedula, 'telefono':telefono, 'tipo_servicio': tipo_servicio, 'info_enviado': info_enviado}	
+	ctx = {'form':formulario, 'correo':correo, 'nombres':nombres, 'apellidos':apellidos, 'cedula':cedula, 'telefono':telefono, 'tipo_servicio': tipo_servicio, 'info_enviado': info_enviado, 'info_enviado_admin': info_enviado_admin, 'info_enviado_user': info_enviado_user}	
 	return render(request,'formulario/solicitud.html',ctx)
