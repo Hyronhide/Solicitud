@@ -18,13 +18,13 @@
 					<p><h5 align="center">Apreciado usuario sena, su petición será respondida en un termino maximo de 24 horas.</h5></p>
 					<p><h5 align="center">Se le envió un correo a <b>{{correo}}</b> con las instrucciones que debe seguir después de que obtenga su recibo.</h5></p>
 				{% else %}
-					<p><h5 id="cn">Ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>		
+					<p><h5 align="center">Apreciado usuario sena, ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>		
 				{% endif %}
 				{% if info_enviado_admin and not info_enviado_user %}
-					<p><h5 id="cn">Ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>
+					<p><h5 align="center">Apreciado usuario sena, ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>
 				{% endif %}
 				{% if not info_enviado_admin and info_enviado_user %}
-					<p><h5 id="cn">Ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>
+					<p><h5 align="center">Apreciado usuario sena, ocurrió un error, por favor vuelva a enviar la solicitud.</h5></p>
 				{% endif %}				
 			{% else %}
 				<p><h5 id="cn">Ingrese los siguientes datos para solicitar el servicio que requiere: </h5></p>
