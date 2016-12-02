@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/media/css/materialize.min.css"/>
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/materialize.min.css"/>
 	<!--<link rel="stylesheet" type="text/css" href="/static/css/materialize.css"/>-->
-	<link rel="stylesheet" type="text/css" href="/media/css/styles.css"/>
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/styles.css"/>
 	<title>{% block title %}{% endblock  %}</title>
   
 </head>
@@ -14,7 +14,7 @@
 	
 	  <nav class=" teal darken-1 " class="menu-header">
 		<div id="colnav" class="nav-wrapper teal darken-1">
-		<a href="http://oferta.senasofiaplus.edu.co/" class="brand-logo left"><img src="/media/images/logos-sena-blanco.png" width="110px" height="70px"></a>
+		<a href="http://oferta.senasofiaplus.edu.co/" class="brand-logo left"><img src="{{STATIC_URL}}images/logos-sena-blanco.png" width="110px" height="70px"></a>
 		<a  href="{% url 'vista_solicitud' %}" class="brand-logo center" padding = "200px">Solicitud de recibo de consignación</a>
 			<!--
 		  <ul class="right hide-on-med-and-down">			
@@ -41,11 +41,11 @@
 		<div class="section">
 		</div>
 	  </div>
-		<script src="/media/js/scripts.js"></script>
-    <script type="text/javascript" src="/media/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/media/js/myscript.js"></script>
-    <script type="text/javascript" src="/media/js/materialize.js"></script>
-    <script type="text/javascript" src="/media/js/materialize.min.js"></script> 
+		<script src="{{STATIC_URL}}js/scripts.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/myscript.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/materialize.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/materialize.min.js"></script> 
   </body>
 </html>
 
