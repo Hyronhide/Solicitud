@@ -25,7 +25,7 @@ SECRET_KEY = '5s3xrvrm#c&y6a-y7)fs(b_jr!tt2j$sy85x*1)y(n(^%)td!k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['solicitudSena.herokuapp.com']
 
 
 # Application definition
@@ -140,6 +140,7 @@ STATIC_URL = '/static/'
 
 MEDIA_URL   = '/media/'
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'solicitud/media')
+#MEDIA_ROOT  = 'media'
 '''
 EMAIL_USE_TLS   = True
 EMAIL_HOST = 'smtp.gmail.com'
