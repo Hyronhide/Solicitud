@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', 
     'solicitud.apps.formulario',
-    'gunicorn',
+    #'gunicorn',
     
 ]
 
@@ -79,20 +79,24 @@ WSGI_APPLICATION = 'solicitud.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
         #'ENGINE': 'django.db.backends.mysql',
         #'NAME': 'solicitud',
         #'USER': 'root',
         #'PASSWORD': '',
         #'HOST': '127.0.0.1',
         #'PORT': '3306',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'solicitud_db',
-        'USER': 'django-windows',
-        'PASSWORD': 'b6032drxw1',
-        'HOST': 'localhost',
-        'PORT': '',
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'solicitud_db',
+        #'USER': 'django-windows',
+        #'PASSWORD': 'b6032drxw1',
+        #'HOST': 'localhost',
+        #'PORT': '',
     }
 }
 
