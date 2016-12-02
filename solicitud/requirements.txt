@@ -4,4 +4,4 @@ virtualenv==1.6.1
 wsgiref==0.1.2
 pywin64==214
 psycopg2==2.6.2
-gunicorn==19.6.
+gunicorn==19.6.0
