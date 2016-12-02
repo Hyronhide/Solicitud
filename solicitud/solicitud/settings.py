@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', 
     'solicitud.apps.formulario',
-    #'gunicorn',
+    'gunicorn',
     
 ]
 
