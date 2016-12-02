@@ -25,7 +25,7 @@ SECRET_KEY = '5s3xrvrm#c&y6a-y7)fs(b_jr!tt2j$sy85x*1)y(n(^%)td!k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['solicitudSena.herokuapp.com']
+ALLOWED_HOSTS = ['solicitudsena.herokuapp.com']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', 
     'solicitud.apps.formulario',
+    'gunicorn',
     
 ]
 
