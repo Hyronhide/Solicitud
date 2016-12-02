@@ -144,8 +144,11 @@ STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
 MEDIA_URL   = '/media/'
+
+#MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),'media/'))
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'solicitud/media')
 #MEDIA_ROOT  = 'media'
+
 '''
 EMAIL_USE_TLS   = True
 EMAIL_HOST = 'smtp.gmail.com'
