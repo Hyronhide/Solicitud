@@ -97,7 +97,7 @@ def Solicitud_View (request):
 			html_content_admin = "<p><b>Solicitud de servicio: </b>%s</p> <!--<p><b>Codigo de radicado:</b> %s</p>--> <br> <b>Nombres</b>: %s <br><br> <b>Apellidos</b>: %s  <br><br> <b>Correo:</b> %s  <br><br> <b>Cedula:</b> %s  <br><br> <b>Telefono:</b> %s "%(servicio,codigo_parsear,nombres,apellidos,correo,cedula,telefono)
 			html_content_user = "<p><b>Solicitud de servicio: </b>%s</p> <!--<p><b>Codigo de radicado:</b> %s</p>--> <p><b>Apreciado usuario, su solicitud será respondida en un termino maximo de 24 horas, por favor tenga en cuenta siguientes instrucciones:</b></p> 1. Debe imprimir únicamente copia que hace referencia al banco, importante: DEBE IMPRIMIR EL RECIBO EN IMPRESORA LASER.<br>2. Debe hacer consignación en sucursales Bancolombia(no corresponsales bancarios).<br>3. Una vez consigne o cancele su recibo debe hacerlos llegar a las oficinas de coordinación académica según su solicitud ,en este caso:  %s.<br>4. La consignación debe hacerse el mismo día que se genera el recibo."%(servicio,codigo_parsear,servicio_usuario)
 
-			msg = EmailMultiAlternatives('Solicitud de recibo de consignacion', html_content_admin, 'from@gmail.com',[to_admin])
+			msg = EmailMultiAlternatives('Solicitud de recibo de consignacion de %s %s'%(nombres,apellidos), html_content_admin, 'from@gmail.com',[to_admin])
 			msg2 = EmailMultiAlternatives('Solicitud de recibo de consignacion (Recuerde esto al momento de obtener el recibo)', html_content_user, 'from@gmail.com',[to_user])
 			msg.attach_alternative(html_content_admin,'text/html')			
 			msg2.attach_alternative(html_content_user,'text/html')			
